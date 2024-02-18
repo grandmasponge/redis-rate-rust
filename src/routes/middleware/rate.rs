@@ -1,8 +1,7 @@
 use axum::{
     body::Body,
     extract::{ConnectInfo, Request},
-    response::{IntoResponse, Response},
-    RequestPartsExt,
+    response::Response,
 };
 use deadpool_redis::{
     redis::{cmd, FromRedisValue},
@@ -17,8 +16,6 @@ use std::{
     task::{Context, Poll},
 };
 use tower::{Layer, Service};
-
-use crate::routes::api::res;
 
 #[derive(Clone)]
 pub struct RedisLayer;
@@ -59,7 +56,7 @@ where
 
         let future = self.inner.call(request);
         Box::pin(async move {
-            let mut con = Config::from_url("redis://localhost:6379");
+            let con = Config::from_url("redis://localhost:6379");
             let pool: Pool = con.create_pool(Some(Runtime::Tokio1)).unwrap();
 
             let arc = Arc::new(pool);

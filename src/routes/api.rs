@@ -1,22 +1,22 @@
 use axum::{http::StatusCode, response::IntoResponse};
 
-pub struct res {
+pub struct Res {
     status: StatusCode,
     body: String,
 }
 
 pub async fn random_api_route() -> impl IntoResponse {
-    let response = res::random_response();
+    let response = Res::random_response();
     (response.status, response.body).into_response()
 }
 
-impl res {
+impl Res {
     pub fn new(status: StatusCode, body: String) -> Self {
-        res { status, body }
+        Res { status, body }
     }
 
     pub fn random_response() -> Self {
         let data = rand::random::<u8>();
-        res::new(StatusCode::OK, data.to_string())
+        Res::new(StatusCode::OK, data.to_string())
     }
 }

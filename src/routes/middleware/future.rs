@@ -12,7 +12,9 @@ pub struct ExampleFuture<F> {
     response_future: F,
 }
 
+
 impl<F> ExampleFuture<F> {
+    #[warn(dead_code)]
     pub fn new(response_future: F) -> Self {
         Self { response_future }
     }

@@ -9,7 +9,7 @@ const ADDR: &str = "0.0.0.0:3000";
 
 #[tokio::main]
 async fn main() {
-    let api_route = routes::api_Router().await;
+    let api_route = routes::api_router().await;
     let router = Router::new()
         .route("/", get(|| async { "Hello, World!" }))
         .merge(api_route);
