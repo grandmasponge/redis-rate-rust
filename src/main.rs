@@ -5,14 +5,14 @@ use axum::Router;
 
 mod routes;
 
-const ADDR: &str = "0.0.0.0:3000";
+const ADDR: &str = "192.168.0.10:3000";
 
 #[tokio::main]
 async fn main() {
     let api_route = routes::api_router().await;
     let router = Router::new()
-        .route("/", get(|| async { "Hello, World!" }))
-        .merge(api_route);
+        .merge(api_route)
+        .route("/", get(|| async { "Hello, World!" }));
 
     let listener = tokio::net::TcpListener::bind(ADDR).await;
 

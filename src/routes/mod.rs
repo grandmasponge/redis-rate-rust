@@ -8,5 +8,5 @@ pub mod middleware;
 pub async fn api_router() -> Router {
     Router::new()
         .route("/data", get(api::random_api_route))
-        .layer(RedisLayer)
+        .layer(RedisLayer::new(60, middleware::rate::AuthMethod::Basic, 5))
 }
