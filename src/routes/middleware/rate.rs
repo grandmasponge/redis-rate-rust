@@ -110,7 +110,7 @@ where
                     let _: i32 = incr(token.to_string(), arc.clone()).await
                     .expect("Failed to increment");
                     println!("User has made {} requests", val);
-                    if val > self.limit {
+                    if val > 6 {
                         let response = Response::builder()
                             .status(StatusCode::TOO_MANY_REQUESTS)
                             .body(Body::empty())
