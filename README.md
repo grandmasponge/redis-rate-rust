@@ -1,4 +1,4 @@
-# Redis Rate limiter in rust (Ongoing)
+# Redis Rate limiter in rust (
 
 this is a project for a freind for is api endpoints that need rate limiting, 
 hopefully i can make this so that all users can successfully impliment rate limiting middleware into their axum or any 
